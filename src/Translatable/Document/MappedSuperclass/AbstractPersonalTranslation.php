@@ -26,7 +26,9 @@ abstract class AbstractPersonalTranslation
     protected $locale;
 
     /**
-     * Related entity with ManyToOne relation
+     * @var object
+     *
+     * Related document with ManyToOne relation
      * must be mapped by user
      */
     protected $object;

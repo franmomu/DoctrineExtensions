@@ -35,6 +35,8 @@ abstract class AbstractPersonalTranslation
     protected $field;
 
     /**
+     * @var object
+     *
      * Related entity with ManyToOne relation
      * must be mapped by user
      */
