@@ -48,7 +48,7 @@ class Xml extends BaseXml
 
         if ('entity' === $xmlDoctrine->getName() || 'document' === $xmlDoctrine->getName() || 'mapped-superclass' === $xmlDoctrine->getName()) {
             if (isset($xml->reference)) {
-                /**
+                /*
                  * @var \SimpleXMLElement
                  */
                 foreach ($xml->reference as $element) {

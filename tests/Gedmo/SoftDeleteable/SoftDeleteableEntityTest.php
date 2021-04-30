@@ -498,7 +498,7 @@ class SoftDeleteableEntityTest extends BaseTestCaseORM
         $this->em->persist($newUser);
         $this->em->flush();
 
-        $user = $repo->findOneBy(array('username' => $username));
+        $user = $repo->findOneBy(['username' => $username]);
 
         $this->assertNull($user->getDeletedAt());
 

@@ -468,7 +468,7 @@ class TranslatableListener extends MappedEventSubscriber
                     }
                 }
                 // update translation
-                if ($translated !== null
+                if (null !== $translated
                     || (!$this->translationFallback && (!isset($config['fallback'][$field]) || !$config['fallback'][$field]))
                     || ($this->translationFallback && isset($config['fallback'][$field]) && !$config['fallback'][$field])
                 ) {

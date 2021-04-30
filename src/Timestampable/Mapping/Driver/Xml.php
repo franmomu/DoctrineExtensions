@@ -47,7 +47,7 @@ class Xml extends BaseXml
         $mapping = $this->_getMapping($meta->name);
 
         if (isset($mapping->field)) {
-            /**
+            /*
              * @var \SimpleXmlElement
              */
             foreach ($mapping->field as $fieldMapping) {

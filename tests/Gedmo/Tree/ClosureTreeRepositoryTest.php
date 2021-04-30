@@ -204,7 +204,7 @@ class ClosureTreeRepositoryTest extends BaseTestCaseORM
         $this->assertTrue(((bool) strpos($qb->getQuery()->getDql(), '(SELECT MAX(')));
     }
 
-    public function test_changeChildrenIndex()
+    public function testChangeChildrenIndex()
     {
         $this->populate(self::CATEGORY);
 
