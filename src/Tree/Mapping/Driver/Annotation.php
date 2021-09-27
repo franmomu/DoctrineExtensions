@@ -3,19 +3,19 @@
 namespace Gedmo\Tree\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
-use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
-use Gedmo\Tree\Mapping\Validator;
+use Gedmo\Mapping\Annotation\Tree;
+use Gedmo\Mapping\Annotation\TreeClosure;
+use Gedmo\Mapping\Annotation\TreeLeft;
+use Gedmo\Mapping\Annotation\TreeLevel;
 use Gedmo\Mapping\Annotation\TreeLockTime;
+use Gedmo\Mapping\Annotation\TreeParent;
+use Gedmo\Mapping\Annotation\TreePath;
 use Gedmo\Mapping\Annotation\TreePathHash;
 use Gedmo\Mapping\Annotation\TreePathSource;
-use Gedmo\Mapping\Annotation\TreePath;
-use Gedmo\Mapping\Annotation\TreeClosure;
-use Gedmo\Mapping\Annotation\TreeRoot;
-use Gedmo\Mapping\Annotation\TreeLevel;
-use Gedmo\Mapping\Annotation\TreeParent;
 use Gedmo\Mapping\Annotation\TreeRight;
-use Gedmo\Mapping\Annotation\TreeLeft;
-use Gedmo\Mapping\Annotation\Tree;
+use Gedmo\Mapping\Annotation\TreeRoot;
+use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
+use Gedmo\Tree\Mapping\Validator;
 
 /**
  * This is an annotation mapping driver for Tree

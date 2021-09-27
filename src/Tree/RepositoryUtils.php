@@ -5,8 +5,8 @@ namespace Gedmo\Tree;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Exception\InvalidArgumentException;
-use Gedmo\Tool\Wrapper\MongoDocumentWrapper;
 use Gedmo\Tool\Wrapper\EntityWrapper;
+use Gedmo\Tool\Wrapper\MongoDocumentWrapper;
 
 class RepositoryUtils implements RepositoryUtilsInterface
 {

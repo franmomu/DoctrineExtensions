@@ -3,10 +3,10 @@
 namespace Gedmo\Sluggable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
+use Gedmo\Mapping\Annotation\Slug;
 use Gedmo\Mapping\Annotation\SlugHandler;
 use Gedmo\Mapping\Annotation\SlugHandlerOption;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
-use Gedmo\Mapping\Annotation\Slug;
 
 /**
  * This is an annotation mapping driver for Sluggable

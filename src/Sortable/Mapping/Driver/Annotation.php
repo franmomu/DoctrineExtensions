@@ -3,9 +3,9 @@
 namespace Gedmo\Sortable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
-use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\Mapping\Annotation\SortableGroup;
 use Gedmo\Mapping\Annotation\SortablePosition;
+use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 
 /**
  * This is an annotation mapping driver for Sortable

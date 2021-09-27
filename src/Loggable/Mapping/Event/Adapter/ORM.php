@@ -2,9 +2,9 @@
 
 namespace Gedmo\Loggable\Mapping\Event\Adapter;
 
+use Gedmo\Loggable\Entity\LogEntry;
 use Gedmo\Loggable\Mapping\Event\LoggableAdapter;
 use Gedmo\Mapping\Event\Adapter\ORM as BaseAdapterORM;
-use Gedmo\Loggable\Entity\LogEntry;
 
 /**
  * Doctrine event adapter for ORM adapted

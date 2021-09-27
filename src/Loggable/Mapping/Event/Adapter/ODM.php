@@ -2,9 +2,9 @@
 
 namespace Gedmo\Loggable\Mapping\Event\Adapter;
 
+use Gedmo\Loggable\Document\LogEntry;
 use Gedmo\Loggable\Mapping\Event\LoggableAdapter;
 use Gedmo\Mapping\Event\Adapter\ODM as BaseAdapterODM;
-use Gedmo\Loggable\Document\LogEntry;
 
 /**
  * Doctrine event adapter for ODM adapted

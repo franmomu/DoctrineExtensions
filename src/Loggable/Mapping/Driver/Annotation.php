@@ -4,9 +4,9 @@ namespace Gedmo\Loggable\Mapping\Driver;
 
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Gedmo\Exception\InvalidMappingException;
-use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
-use Gedmo\Mapping\Annotation\Versioned;
 use Gedmo\Mapping\Annotation\Loggable;
+use Gedmo\Mapping\Annotation\Versioned;
+use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 
 /**
  * This is an annotation mapping driver for Loggable

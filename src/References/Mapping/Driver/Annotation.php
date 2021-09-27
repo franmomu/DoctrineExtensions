@@ -2,10 +2,10 @@
 
 namespace Gedmo\References\Mapping\Driver;
 
-use Gedmo\Mapping\Driver\AnnotationDriverInterface;
-use Gedmo\Mapping\Annotation\ReferenceManyEmbed;
 use Gedmo\Mapping\Annotation\ReferenceMany;
+use Gedmo\Mapping\Annotation\ReferenceManyEmbed;
 use Gedmo\Mapping\Annotation\ReferenceOne;
+use Gedmo\Mapping\Driver\AnnotationDriverInterface;
 
 /**
  * This is an annotation mapping driver for References

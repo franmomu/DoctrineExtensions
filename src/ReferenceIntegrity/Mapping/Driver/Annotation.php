@@ -3,9 +3,9 @@
 namespace Gedmo\ReferenceIntegrity\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
+use Gedmo\Mapping\Annotation\ReferenceIntegrity;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\ReferenceIntegrity\Mapping\Validator;
-use Gedmo\Mapping\Annotation\ReferenceIntegrity;
 
 /**
  * This is an annotation mapping driver for ReferenceIntegrity

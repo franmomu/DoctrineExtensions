@@ -12,10 +12,10 @@ use Doctrine\ORM\Query\AST\RangeVariableDeclaration;
 use Doctrine\ORM\Query\AST\SelectStatement;
 use Doctrine\ORM\Query\Exec\SingleSelectExecutor;
 use Doctrine\ORM\Query\SqlWalker;
+use Gedmo\Translatable\Hydrator\ORM\ObjectHydrator;
+use Gedmo\Translatable\Hydrator\ORM\SimpleObjectHydrator;
 use Gedmo\Translatable\Mapping\Event\Adapter\ORM as TranslatableEventAdapter;
 use Gedmo\Translatable\TranslatableListener;
-use Gedmo\Translatable\Hydrator\ORM\SimpleObjectHydrator;
-use Gedmo\Translatable\Hydrator\ORM\ObjectHydrator;
 
 /**
  * The translation sql output walker makes it possible

@@ -3,8 +3,8 @@
 namespace Gedmo\IpTraceable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
-use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\Mapping\Annotation\IpTraceable;
+use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 
 /**
  * This is an annotation mapping driver for IpTraceable

@@ -6,12 +6,12 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Iterator\Iterator;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
+use Doctrine\ODM\MongoDB\Types\Type;
 use Doctrine\ODM\MongoDB\UnitOfWork;
 use Gedmo\Tool\Wrapper\MongoDocumentWrapper;
+use Gedmo\Translatable\Document\MappedSuperclass\AbstractPersonalTranslation;
 use Gedmo\Translatable\Mapping\Event\Adapter\ODM as TranslatableAdapterODM;
 use Gedmo\Translatable\TranslatableListener;
-use Doctrine\ODM\MongoDB\Types\Type;
-use Gedmo\Translatable\Document\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * The TranslationRepository has some useful functions

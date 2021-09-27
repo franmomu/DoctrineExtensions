@@ -22,11 +22,11 @@ use Gedmo\Mapping\Event\AdapterInterface;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Uploadable\Event\UploadablePostFileProcessEventArgs;
 use Gedmo\Uploadable\Event\UploadablePreFileProcessEventArgs;
+use Gedmo\Uploadable\FileInfo\FileInfoArray;
 use Gedmo\Uploadable\FileInfo\FileInfoInterface;
 use Gedmo\Uploadable\Mapping\Validator;
 use Gedmo\Uploadable\MimeType\MimeTypeGuesser;
 use Gedmo\Uploadable\MimeType\MimeTypeGuesserInterface;
-use Gedmo\Uploadable\FileInfo\FileInfoArray;
 
 /**
  * Uploadable listener

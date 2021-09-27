@@ -2,13 +2,13 @@
 
 namespace Gedmo\Uploadable\Mapping\Driver;
 
+use Gedmo\Mapping\Annotation\Uploadable;
+use Gedmo\Mapping\Annotation\UploadableFileMimeType;
+use Gedmo\Mapping\Annotation\UploadableFileName;
+use Gedmo\Mapping\Annotation\UploadableFilePath;
+use Gedmo\Mapping\Annotation\UploadableFileSize;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\Uploadable\Mapping\Validator;
-use Gedmo\Mapping\Annotation\UploadableFileSize;
-use Gedmo\Mapping\Annotation\UploadableFilePath;
-use Gedmo\Mapping\Annotation\UploadableFileName;
-use Gedmo\Mapping\Annotation\UploadableFileMimeType;
-use Gedmo\Mapping\Annotation\Uploadable;
 
 /**
  * This is an annotation mapping driver for Uploadable

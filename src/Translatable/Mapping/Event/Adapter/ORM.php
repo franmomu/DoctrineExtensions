@@ -7,9 +7,9 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Gedmo\Mapping\Event\Adapter\ORM as BaseAdapterORM;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
-use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
-use Gedmo\Translatable\Entity\Translation;
 use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
+use Gedmo\Translatable\Entity\Translation;
+use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
 
 /**
  * Doctrine event adapter for ORM adapted
@@ -116,7 +116,7 @@ final class ORM extends BaseAdapterORM implements TranslatableAdapter
         case Type::BIGINT:
         case Type::INTEGER:
         case Type::SMALLINT:
-            return intval($key);
+            return (int) $key;
         default:
             return (string) $key;
         }

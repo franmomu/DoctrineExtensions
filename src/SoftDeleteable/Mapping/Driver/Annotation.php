@@ -3,9 +3,9 @@
 namespace Gedmo\SoftDeleteable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
+use Gedmo\Mapping\Annotation\SoftDeleteable;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\SoftDeleteable\Mapping\Validator;
-use Gedmo\Mapping\Annotation\SoftDeleteable;
 
 /**
  * This is an annotation mapping driver for SoftDeleteable

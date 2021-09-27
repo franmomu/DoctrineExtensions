@@ -4,12 +4,12 @@ namespace Gedmo\Translatable\Mapping\Event\Adapter;
 
 use Doctrine\MongoDB\Cursor;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadata;
+use Doctrine\ODM\MongoDB\Types\Type;
 use Gedmo\Mapping\Event\Adapter\ODM as BaseAdapterODM;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
-use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
-use Doctrine\ODM\MongoDB\Types\Type;
-use Gedmo\Translatable\Document\Translation;
 use Gedmo\Translatable\Document\MappedSuperclass\AbstractPersonalTranslation;
+use Gedmo\Translatable\Document\Translation;
+use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
 
 /**
  * Doctrine event adapter for ODM adapted

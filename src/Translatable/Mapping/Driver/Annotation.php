@@ -3,11 +3,11 @@
 namespace Gedmo\Translatable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
-use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\Mapping\Annotation\Language;
 use Gedmo\Mapping\Annotation\Locale;
 use Gedmo\Mapping\Annotation\Translatable;
 use Gedmo\Mapping\Annotation\TranslationEntity;
+use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 
 /**
  * This is an annotation mapping driver for Translatable

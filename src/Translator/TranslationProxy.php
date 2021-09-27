@@ -3,7 +3,6 @@
 namespace Gedmo\Translator;
 
 use Doctrine\Common\Collections\Collection;
-use Gedmo\Translator\TranslationInterface;
 
 /**
  * Proxy class for Entity/Document translations.

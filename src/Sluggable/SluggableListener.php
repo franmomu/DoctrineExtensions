@@ -7,8 +7,8 @@ use Doctrine\Persistence\ObjectManager;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Sluggable\Handler\SlugHandlerWithUniqueCallbackInterface;
 use Gedmo\Sluggable\Mapping\Event\SluggableAdapter;
-use Gedmo\Tool\Wrapper\AbstractWrapper;
 use Gedmo\Sluggable\Util\Urlizer;
+use Gedmo\Tool\Wrapper\AbstractWrapper;
 
 /**
  * The SluggableListener handles the generation of slugs
