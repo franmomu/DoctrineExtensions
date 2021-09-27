@@ -5,6 +5,7 @@ namespace Gedmo\SoftDeleteable\Mapping\Driver;
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
 use Gedmo\SoftDeleteable\Mapping\Validator;
+use Gedmo\Mapping\Annotation\SoftDeleteable;
 
 /**
  * This is an annotation mapping driver for SoftDeleteable
@@ -21,7 +22,7 @@ class Annotation extends AbstractAnnotationDriver
     /**
      * Annotation to define that this object is loggable
      */
-    public const SOFT_DELETEABLE = 'Gedmo\\Mapping\\Annotation\\SoftDeleteable';
+    public const SOFT_DELETEABLE = SoftDeleteable::class;
 
     /**
      * {@inheritdoc}

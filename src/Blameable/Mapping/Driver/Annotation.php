@@ -4,6 +4,7 @@ namespace Gedmo\Blameable\Mapping\Driver;
 
 use Gedmo\Exception\InvalidMappingException;
 use Gedmo\Mapping\Driver\AbstractAnnotationDriver;
+use Gedmo\Mapping\Annotation\Blameable;
 
 /**
  * This is an annotation mapping driver for Blameable
@@ -19,7 +20,7 @@ class Annotation extends AbstractAnnotationDriver
     /**
      * Annotation field is blameable
      */
-    public const BLAMEABLE = 'Gedmo\\Mapping\\Annotation\\Blameable';
+    public const BLAMEABLE = Blameable::class;
 
     /**
      * List of types which are valid for blame

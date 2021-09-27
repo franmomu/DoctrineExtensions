@@ -4,6 +4,7 @@ namespace Gedmo\Loggable\Mapping\Event\Adapter;
 
 use Gedmo\Loggable\Mapping\Event\LoggableAdapter;
 use Gedmo\Mapping\Event\Adapter\ODM as BaseAdapterODM;
+use Gedmo\Loggable\Document\LogEntry;
 
 /**
  * Doctrine event adapter for ODM adapted
@@ -19,7 +20,7 @@ final class ODM extends BaseAdapterODM implements LoggableAdapter
      */
     public function getDefaultLogEntryClass()
     {
-        return 'Gedmo\\Loggable\\Document\\LogEntry';
+        return LogEntry::class;
     }
 
     /**

@@ -26,6 +26,7 @@ use Gedmo\Uploadable\FileInfo\FileInfoInterface;
 use Gedmo\Uploadable\Mapping\Validator;
 use Gedmo\Uploadable\MimeType\MimeTypeGuesser;
 use Gedmo\Uploadable\MimeType\MimeTypeGuesserInterface;
+use Gedmo\Uploadable\FileInfo\FileInfoArray;
 
 /**
  * Uploadable listener
@@ -58,7 +59,7 @@ class UploadableListener extends MappedEventSubscriber
      *
      * @var string
      */
-    private $defaultFileInfoClass = 'Gedmo\Uploadable\FileInfo\FileInfoArray';
+    private $defaultFileInfoClass = FileInfoArray::class;
 
     /**
      * Array of files to remove on postFlush
@@ -630,7 +631,7 @@ class UploadableListener extends MappedEventSubscriber
      */
     public function setDefaultFileInfoClass($defaultFileInfoClass)
     {
-        $fileInfoInterface = 'Gedmo\\Uploadable\\FileInfo\\FileInfoInterface';
+        $fileInfoInterface = FileInfoInterface::class;
         $refl = is_string($defaultFileInfoClass) && class_exists($defaultFileInfoClass) ?
             new \ReflectionClass($defaultFileInfoClass) :
             false;

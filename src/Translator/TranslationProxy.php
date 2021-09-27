@@ -3,6 +3,7 @@
 namespace Gedmo\Translator;
 
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Translator\TranslationInterface;
 
 /**
  * Proxy class for Entity/Document translations.
@@ -41,7 +42,7 @@ class TranslationProxy
         $this->coll = $coll;
 
         $translationClass = new \ReflectionClass($class);
-        if (!$translationClass->implementsInterface('Gedmo\Translator\TranslationInterface')) {
+        if (!$translationClass->implementsInterface(TranslationInterface::class)) {
             throw new \InvalidArgumentException(sprintf('Translation class should implement Gedmo\Translator\TranslationInterface, "%s" given', $class));
         }
     }

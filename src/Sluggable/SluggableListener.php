@@ -8,6 +8,7 @@ use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Sluggable\Handler\SlugHandlerWithUniqueCallbackInterface;
 use Gedmo\Sluggable\Mapping\Event\SluggableAdapter;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
+use Gedmo\Sluggable\Util\Urlizer;
 
 /**
  * The SluggableListener handles the generation of slugs
@@ -35,14 +36,14 @@ class SluggableListener extends MappedEventSubscriber
      *
      * @var callable
      */
-    private $transliterator = ['Gedmo\Sluggable\Util\Urlizer', 'transliterate'];
+    private $transliterator = [Urlizer::class, 'transliterate'];
 
     /**
      * Urlize callback for slugs
      *
      * @var callable
      */
-    private $urlizer = ['Gedmo\Sluggable\Util\Urlizer', 'urlize'];
+    private $urlizer = [Urlizer::class, 'urlize'];
 
     /**
      * List of inserted slugs for each object class.

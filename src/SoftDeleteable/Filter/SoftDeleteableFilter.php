@@ -120,7 +120,7 @@ class SoftDeleteableFilter extends SQLFilter
     protected function getEntityManager()
     {
         if (null === $this->entityManager) {
-            $refl = new \ReflectionProperty('Doctrine\ORM\Query\Filter\SQLFilter', 'em');
+            $refl = new \ReflectionProperty(SQLFilter::class, 'em');
             $refl->setAccessible(true);
             $this->entityManager = $refl->getValue($this);
         }

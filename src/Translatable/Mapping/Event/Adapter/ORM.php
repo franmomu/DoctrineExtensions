@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Gedmo\Mapping\Event\Adapter\ORM as BaseAdapterORM;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
 use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
+use Gedmo\Translatable\Entity\Translation;
+use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
 
 /**
  * Doctrine event adapter for ORM adapted
@@ -27,7 +29,7 @@ final class ORM extends BaseAdapterORM implements TranslatableAdapter
             ->getObjectManager()
             ->getClassMetadata($translationClassName)
             ->getReflectionClass()
-            ->isSubclassOf('Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation')
+            ->isSubclassOf(AbstractPersonalTranslation::class)
         ;
     }
 
@@ -36,7 +38,7 @@ final class ORM extends BaseAdapterORM implements TranslatableAdapter
      */
     public function getDefaultTranslationClass()
     {
-        return 'Gedmo\\Translatable\\Entity\\Translation';
+        return Translation::class;
     }
 
     /**

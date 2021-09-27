@@ -75,7 +75,7 @@ class SoftDeleteableFilter extends BsonFilter
     protected function getDocumentManager()
     {
         if (null === $this->documentManager) {
-            $refl = new \ReflectionProperty('Doctrine\ODM\MongoDB\Query\Filter\BsonFilter', 'dm');
+            $refl = new \ReflectionProperty(BsonFilter::class, 'dm');
             $refl->setAccessible(true);
             $this->documentManager = $refl->getValue($this);
         }
