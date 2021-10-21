@@ -3,6 +3,7 @@
 namespace Gedmo\Loggable;
 
 use Doctrine\Common\EventArgs;
+use Gedmo\Loggable\Mapping\Event\Adapter\ORM;
 use Gedmo\Loggable\Mapping\Event\LoggableAdapter;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
@@ -125,7 +126,7 @@ class LoggableListener extends MappedEventSubscriber
         $ea = $this->getEventAdapter($args);
         $object = $ea->getObject();
         $om = $ea->getObjectManager();
-        $oid = spl_object_id($object);
+        $oid = $ea instanceof ORM ? spl_object_id($object) : spl_object_hash($object);
         $uow = $om->getUnitOfWork();
         if ($this->pendingLogEntryInserts && array_key_exists($oid, $this->pendingLogEntryInserts)) {
             $wrapped = AbstractWrapper::wrap($object, $om);

@@ -233,6 +233,7 @@ abstract class AbstractMaterializedPath implements Strategy
     public function updateNode(ObjectManager $om, $node, AdapterInterface $ea)
     {
         $oid = spl_object_id($node);
+        $oidODM = spl_object_hash($node);
         $meta = $om->getClassMetadata(get_class($node));
         $config = $this->listener->getConfiguration($om, $meta->name);
         $uow = $om->getUnitOfWork();
@@ -342,7 +343,7 @@ abstract class AbstractMaterializedPath implements Strategy
         }
 
         if (!$uow instanceof MongoDBUnitOfWork) {
-            $ea->setOriginalObjectProperty($uow, $oid, $config['path'], $path);
+            $ea->setOriginalObjectProperty($uow, $oidODM, $config['path'], $path);
             $uow->scheduleExtraUpdate($node, $changes);
         } else {
             $ea->recomputeSingleObjectChangeSet($uow, $meta, $node);

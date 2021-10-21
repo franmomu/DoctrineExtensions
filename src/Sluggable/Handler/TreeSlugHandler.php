@@ -5,6 +5,7 @@ namespace Gedmo\Sluggable\Handler;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Exception\InvalidMappingException;
+use Gedmo\Sluggable\Mapping\Event\Adapter\ORM;
 use Gedmo\Sluggable\Mapping\Event\SluggableAdapter;
 use Gedmo\Sluggable\SluggableListener;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
@@ -155,7 +156,7 @@ class TreeSlugHandler implements SlugHandlerWithUniqueCallbackInterface
                     if (property_exists($object, '__isInitialized__') && !$object->__isInitialized__) {
                         continue;
                     }
-                    $oid = spl_object_id($object);
+                    $oid = $ea instanceof ORM ? spl_object_id($object) : spl_object_hash($object);
                     $objectSlug = $meta->getReflectionProperty($config['slug'])->getValue($object);
                     if (preg_match("@^{$target}{$config['pathSeparator']}@smi", $objectSlug)) {
                         $objectSlug = str_replace($target, $slug, $objectSlug);

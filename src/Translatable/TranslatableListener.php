@@ -7,6 +7,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Gedmo\Mapping\MappedEventSubscriber;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
+use Gedmo\Translatable\Mapping\Event\Adapter\ORM;
 use Gedmo\Translatable\Mapping\Event\TranslatableAdapter;
 
 /**
@@ -316,7 +317,7 @@ class TranslatableListener extends MappedEventSubscriber
                 $locale = $value;
             }
         } elseif ($om instanceof DocumentManager) {
-            list($mapping, $parentObject) = $om->getUnitOfWork()->getParentAssociation($object);
+            [$mapping, $parentObject] = $om->getUnitOfWork()->getParentAssociation($object);
             if (null != $parentObject) {
                 $parentMeta = $om->getClassMetadata(get_class($parentObject));
                 $locale = $this->getTranslatableLocale($parentObject, $parentMeta, $om);
@@ -544,7 +545,7 @@ class TranslatableListener extends MappedEventSubscriber
         $locale = $this->getTranslatableLocale($object, $meta, $om);
 
         $uow = $om->getUnitOfWork();
-        $oid = spl_object_id($object);
+        $oid = $ea instanceof ORM ? spl_object_id($object) : spl_object_hash($object);
         $changeSet = $ea->getObjectChangeSet($uow, $object);
         $translatableFields = $config['fields'];
         foreach ($translatableFields as $field) {

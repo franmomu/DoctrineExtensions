@@ -5,6 +5,7 @@ namespace Gedmo\Sluggable\Handler;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\ObjectManager;
 use Gedmo\Exception\InvalidMappingException;
+use Gedmo\Sluggable\Mapping\Event\Adapter\ORM;
 use Gedmo\Sluggable\Mapping\Event\SluggableAdapter;
 use Gedmo\Sluggable\SluggableListener;
 use Gedmo\Tool\Wrapper\AbstractWrapper;
@@ -109,7 +110,7 @@ class InversedRelativeSlugHandler implements SlugHandlerInterface
                         if (property_exists($object, '__isInitialized__') && !$object->__isInitialized__) {
                             continue;
                         }
-                        $oid = spl_object_id($object);
+                        $oid = $ea instanceof ORM ? spl_object_id($object) : spl_object_hash($object);
                         $objectSlug = $meta->getReflectionProperty($mappedByConfig['slug'])->getValue($object);
                         if (preg_match("@^{$oldSlug}@smi", $objectSlug)) {
                             $objectSlug = str_replace($oldSlug, $slug, $objectSlug);
