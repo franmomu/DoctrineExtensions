@@ -409,7 +409,7 @@ class TranslatableListener extends MappedEventSubscriber
         $meta = $om->getClassMetadata(get_class($object));
         // check if entity is tracked by translatable and without foreign key
         if ($this->getConfiguration($om, $meta->name) && count($this->pendingTranslationInserts)) {
-            $oid = spl_object_hash($object);
+            $oid = spl_object_id($object);
             if (array_key_exists($oid, $this->pendingTranslationInserts)) {
                 // load the pending translations without key
                 $wrapped = AbstractWrapper::wrap($object, $om);
@@ -441,7 +441,7 @@ class TranslatableListener extends MappedEventSubscriber
         $config = $this->getConfiguration($om, $meta->name);
         if (isset($config['fields'])) {
             $locale = $this->getTranslatableLocale($object, $meta, $om);
-            $oid = spl_object_hash($object);
+            $oid = spl_object_id($object);
             $this->translatedInLocale[$oid] = $locale;
         }
 
@@ -544,7 +544,7 @@ class TranslatableListener extends MappedEventSubscriber
         $locale = $this->getTranslatableLocale($object, $meta, $om);
 
         $uow = $om->getUnitOfWork();
-        $oid = spl_object_hash($object);
+        $oid = spl_object_id($object);
         $changeSet = $ea->getObjectChangeSet($uow, $object);
         $translatableFields = $config['fields'];
         foreach ($translatableFields as $field) {
@@ -624,7 +624,7 @@ class TranslatableListener extends MappedEventSubscriber
                     if ($isInsert && !$objectId && !$ea->usesPersonalTranslation($translationClass)) {
                         // if we do not have the primary key yet available
                         // keep this translation in memory to insert it later with foreign key
-                        $this->pendingTranslationInserts[spl_object_hash($object)][] = $translation;
+                        $this->pendingTranslationInserts[spl_object_id($object)][] = $translation;
                     } else {
                         // persist and compute change set for translation
                         if ($wasPersistedSeparetely) {

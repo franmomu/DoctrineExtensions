@@ -102,7 +102,7 @@ abstract class AbstractMaterializedPath implements Strategy
         $fieldMapping = $meta->getFieldMapping($config['path_source']);
 
         if ($meta->isIdentifier($config['path_source']) || 'string' === $fieldMapping['type']) {
-            $this->scheduledForPathProcess[spl_object_hash($node)] = $node;
+            $this->scheduledForPathProcess[spl_object_id($node)] = $node;
         } else {
             $this->updateNode($om, $node, $ea);
         }
@@ -137,7 +137,7 @@ abstract class AbstractMaterializedPath implements Strategy
      */
     public function processPostPersist($om, $node, AdapterInterface $ea)
     {
-        $oid = spl_object_hash($node);
+        $oid = spl_object_id($node);
 
         if ($this->scheduledForPathProcess && array_key_exists($oid, $this->scheduledForPathProcess)) {
             $this->scheduledForPathProcessWithIdSet[$oid] = $node;
@@ -232,7 +232,7 @@ abstract class AbstractMaterializedPath implements Strategy
      */
     public function updateNode(ObjectManager $om, $node, AdapterInterface $ea)
     {
-        $oid = spl_object_hash($node);
+        $oid = spl_object_id($node);
         $meta = $om->getClassMetadata(get_class($node));
         $config = $this->listener->getConfiguration($om, $meta->name);
         $uow = $om->getUnitOfWork();
@@ -420,9 +420,9 @@ abstract class AbstractMaterializedPath implements Strategy
                 throw new TreeLockingException(sprintf($msg, $id));
             }
 
-            $this->rootsOfTreesWhichNeedsLocking[spl_object_hash($parentNode)] = $parentNode;
+            $this->rootsOfTreesWhichNeedsLocking[spl_object_id($parentNode)] = $parentNode;
 
-            $oid = spl_object_hash($node);
+            $oid = spl_object_id($node);
 
             switch ($action) {
                 case self::ACTION_INSERT:
@@ -459,15 +459,15 @@ abstract class AbstractMaterializedPath implements Strategy
         if ($config['activate_locking']) {
             switch ($action) {
                 case self::ACTION_INSERT:
-                    unset($this->pendingObjectsToInsert[spl_object_hash($node)]);
+                    unset($this->pendingObjectsToInsert[spl_object_id($node)]);
 
                     break;
                 case self::ACTION_UPDATE:
-                    unset($this->pendingObjectsToUpdate[spl_object_hash($node)]);
+                    unset($this->pendingObjectsToUpdate[spl_object_id($node)]);
 
                     break;
                 case self::ACTION_REMOVE:
-                    unset($this->pendingObjectsToRemove[spl_object_hash($node)]);
+                    unset($this->pendingObjectsToRemove[spl_object_id($node)]);
 
                     break;
                 default:
