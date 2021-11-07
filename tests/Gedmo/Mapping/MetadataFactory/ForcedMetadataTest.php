@@ -1,5 +1,7 @@
 <?php
 
+namespace Gedmo\Mapping\MetadataFactory;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\Version;

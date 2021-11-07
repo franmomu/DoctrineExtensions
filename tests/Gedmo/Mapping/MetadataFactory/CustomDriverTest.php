@@ -1,5 +1,7 @@
 <?php
 
+namespace Gedmo\Mapping\MetadataFactory;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Mapping\ClassMetadata;
 use Doctrine\Persistence\Mapping\Driver\MappingDriver;
