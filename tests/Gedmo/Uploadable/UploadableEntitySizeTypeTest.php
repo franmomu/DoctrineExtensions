@@ -47,7 +47,7 @@ final class UploadableEntitySizeTypeTest extends BaseTestCaseORM
     private $testFilename;
 
     /**
-     * @var string
+     * @var int
      */
     private $testFileSize;
 
@@ -70,7 +70,7 @@ final class UploadableEntitySizeTypeTest extends BaseTestCaseORM
         $this->testFile = TESTS_PATH.'/data/test_for_typed_properties.txt';
         $this->destinationTestDir = TESTS_TEMP_DIR.'/uploadable';
         $this->testFilename = substr($this->testFile, strrpos($this->testFile, '/') + 1);
-        $this->testFileSize = '4';
+        $this->testFileSize = 4;
         $this->testFileMimeType = 'text/plain';
 
         $this->clearFilesAndDirectories();
@@ -102,7 +102,7 @@ final class UploadableEntitySizeTypeTest extends BaseTestCaseORM
 
         $this->assertPathEquals($image->getPath().'/'.$fileInfo['name'], $image->getFilePath());
         static::assertTrue(is_file($file));
-        static::assertSame($fileInfo['size'], $image->getSize());
+        static::assertSame((string) $fileInfo['size'], $image->getSize());
         static::assertSame($fileInfo['type'], $image->getMime());
 
         $this->em->remove($image);
