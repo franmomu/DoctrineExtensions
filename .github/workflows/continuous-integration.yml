@@ -28,6 +28,7 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
+          - "8.2"
         deps:
           - "highest"
         dbal-version:
@@ -58,6 +59,10 @@ jobs:
       - name: "Restrict DBAL version"
         if: "${{ matrix.dbal-version }}"
         run: "composer require --dev --no-update doctrine/dbal:${{ matrix.dbal-version }}"
+
+      - name: "Use minimum stability dev with PHP 8.2"
+        if: "${{ matrix.php-version == '8.2' }}"
+        run: "composer config minimum-stability dev"
 
       - name: "Install dependencies with Composer"
         uses: "ramsey/composer-install@v2"
