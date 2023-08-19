@@ -77,6 +77,8 @@ abstract class BaseTestCaseORM extends TestCase
         $connection = DriverManager::getConnection($conn, $config);
         $em = new EntityManager($connection, $config, $evm ?? $this->getEventManager());
 
+        $em = EntityManager::create($conn, $config, $evm ?? $this->getEventManager());
+
         $schema = array_map(static function (string $class) use ($em): ClassMetadata {
             return $em->getClassMetadata($class);
         }, $this->getUsedEntityFixtures());
