@@ -12,7 +12,9 @@ declare(strict_types=1);
 namespace Gedmo\Tests\Tool;
 
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Tools\DsnParser;
 use Doctrine\ODM\MongoDB\Configuration;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\Driver\AnnotationDriver as AnnotationDriverODM;
@@ -123,14 +125,8 @@ abstract class BaseTestCaseOM extends TestCase
      */
     protected function getDefaultMockSqliteEntityManager(array $fixtures, ?MappingDriver $mappingDriver = null): EntityManager
     {
-        $conn = [
-            'driver' => 'pdo_sqlite',
-            'memory' => true,
-        ];
-
         $config = $this->getMockORMConfig($mappingDriver);
-        $connection = DriverManager::getConnection($conn, $config);
-        $em = new EntityManager($connection, $config, $this->getEventManager());
+        $em = new EntityManager($this->getConnection($this->getEventManager()), $config, $this->getEventManager());
 
         $schema = array_map(static function (string $class) use ($em): ClassMetadata {
             assert(class_exists($class));
@@ -143,6 +139,24 @@ abstract class BaseTestCaseOM extends TestCase
         $schemaTool->createSchema($schema);
 
         return $em;
+    }
+
+    private function getConnection(?EventManager $evm = null): Connection
+    {
+        if (isset($_ENV['DATABASE_DSN']) && class_exists(DsnParser::class)) {
+            $params = (new DsnParser([
+                'mysql' => 'pdo_mysql',
+                'postgres' => 'pdo_pgsql',
+                'sqlite' => 'pdo_sqlite',
+            ]))->parse($_ENV['DATABASE_DSN']);
+        } else {
+            $params = [
+                'driver' => 'pdo_sqlite',
+                'memory' => true,
+            ];
+        }
+
+        return DriverManager::getConnection($params, null, $evm);
     }
 
     /**

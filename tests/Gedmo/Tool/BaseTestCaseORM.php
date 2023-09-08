@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Gedmo\Tests\Tool;
 
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Driver;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Logging\Middleware;
+use Doctrine\DBAL\Tools\DsnParser;
 use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\ClassMetadata;
@@ -61,6 +63,16 @@ abstract class BaseTestCaseORM extends TestCase
         $this->queryLogger = $this->createMock(LoggerInterface::class);
     }
 
+    protected function tearDown(): void
+    {
+        if ($this->em === null) {
+            return;
+        }
+
+        $schemaTool = new SchemaTool($this->em);
+        $schemaTool->dropSchema([]);
+    }
+
     /**
      * EntityManager mock object together with
      * annotation mapping driver and pdo_sqlite
@@ -68,14 +80,8 @@ abstract class BaseTestCaseORM extends TestCase
      */
     protected function getDefaultMockSqliteEntityManager(?EventManager $evm = null, ?Configuration $config = null): EntityManager
     {
-        $conn = [
-            'driver' => 'pdo_sqlite',
-            'memory' => true,
-        ];
-
         $config = $config ?? $this->getDefaultConfiguration();
-        $connection = DriverManager::getConnection($conn, $config);
-        $em = new EntityManager($connection, $config, $evm ?? $this->getEventManager());
+        $em = new EntityManager($this->getConnection($evm ?? $this->getEventManager()), $config, $evm ?? $this->getEventManager());
 
         $schema = array_map(static function (string $class) use ($em): ClassMetadata {
             return $em->getClassMetadata($class);
@@ -140,6 +146,24 @@ abstract class BaseTestCaseORM extends TestCase
         }
 
         return $config;
+    }
+
+    private function getConnection(?EventManager $evm = null): Connection
+    {
+        if (isset($_ENV['DATABASE_DSN']) && class_exists(DsnParser::class)) {
+            $params = (new DsnParser([
+                'mysql' => 'pdo_mysql',
+                'postgres' => 'pdo_pgsql',
+                'sqlite' => 'pdo_sqlite',
+            ]))->parse($_ENV['DATABASE_DSN']);
+        } else {
+            $params = [
+                'driver' => 'pdo_sqlite',
+                'memory' => true,
+            ];
+        }
+
+        return DriverManager::getConnection($params, null, $evm);
     }
 
     /**
